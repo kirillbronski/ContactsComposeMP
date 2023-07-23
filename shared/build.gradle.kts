@@ -2,7 +2,7 @@ plugins {
     kotlin("multiplatform")
     id("com.android.library")
     id("org.jetbrains.compose")
-    //id("com.squareup.sqldelight")
+    id("com.squareup.sqldelight")
 }
 
 kotlin {
@@ -14,11 +14,11 @@ kotlin {
         }
     }
 
-    targets.withType(org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget::class.java).all {
-        binaries.withType(org.jetbrains.kotlin.gradle.plugin.mpp.Framework::class.java).all {
-            export("dev.icerock.moko:mvvm-core:0.16.1")
-        }
-    }
+//    targets.withType(org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget::class.java).all {
+//        binaries.withType(org.jetbrains.kotlin.gradle.plugin.mpp.Framework::class.java).all {
+//            export("dev.icerock.moko:mvvm-core:0.16.1")
+//        }
+//    }
 
     listOf(
         iosX64(),
@@ -44,7 +44,7 @@ kotlin {
                 implementation("com.squareup.sqldelight:runtime:1.5.5")
                 implementation("com.squareup.sqldelight:coroutines-extensions:1.5.5")
                 implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
-                implementation("dev.icerock.moko:mvvm-core:0.16.1")
+                api("dev.icerock.moko:mvvm-core:0.16.1")
                 implementation("dev.icerock.moko:mvvm-compose:0.16.1")
 //                implementation("dev.icerock.moko:mvvm-flow:0.16.1")
 //                implementation("dev.icerock.moko:mvvm-flow-compose:0.16.1")
@@ -57,13 +57,10 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                implementation("com.squareup.sqldelight:android-driver:1.5.5")
+                implementation("androidx.core:core:1.10.1")
                 implementation("androidx.appcompat:appcompat:1.6.1")
                 implementation("androidx.activity:activity-compose:1.7.2")
-                implementation("dev.icerock.moko:mvvm-core:0.16.1")
-//                implementation("dev.icerock.moko:mvvm-compose:0.16.1")
-//                implementation("dev.icerock.moko:mvvm-flow:0.16.1")
-//                implementation("dev.icerock.moko:mvvm-flow-compose:0.16.1")
+                implementation("com.squareup.sqldelight:android-driver:1.5.5")
             }
             dependsOn(commonMain)
         }
@@ -74,11 +71,6 @@ kotlin {
         val iosMain by creating {
             dependencies {
                 implementation("com.squareup.sqldelight:native-driver:1.5.5")
-                api("dev.icerock.moko:mvvm-core:0.16.1")
-//                api("dev.icerock.moko:mvvm-compose:0.16.1")
-//                api("dev.icerock.moko:mvvm-flow:0.16.1")
-//                api("dev.icerock.moko:mvvm-flow-compose:0.16.1")
-
             }
             dependsOn(commonMain)
             iosX64Main.dependsOn(this)
@@ -96,10 +88,6 @@ kotlin {
         }
     }
 }
-
-//compose {
-//    kotlinCompilerPlugin.set("org.jetbrains.compose.compiler:compiler:1.4.5")
-//}
 
 android {
     namespace = "com.kbcoding.contactscomposemp"
@@ -127,3 +115,11 @@ dependencies {
     implementation("dev.icerock.moko:mvvm-flow:0.16.1")
     implementation("dev.icerock.moko:mvvm-flow-compose:0.16.1")
 }
+
+//dependencies {
+//
+//    implementation("dev.icerock.moko:mvvm-core:0.16.1")
+//    implementation("dev.icerock.moko:mvvm-compose:0.16.1")
+//    implementation("dev.icerock.moko:mvvm-flow:0.16.1")
+//    implementation("dev.icerock.moko:mvvm-flow-compose:0.16.1")
+//}
