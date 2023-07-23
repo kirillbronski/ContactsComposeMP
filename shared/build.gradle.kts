@@ -101,20 +101,20 @@ android {
     }
 }
 
-//sqldelight {
-//    database("ContactDatabase") {
-//        packageName = "com.kbcoding.contactscomposemp.database"
-//        sourceFolders = listOf("sqldelight")
-//    }
-//}
-
-dependencies {
-    implementation("androidx.core:core:1.10.1")
-    implementation("dev.icerock.moko:mvvm-core:0.16.1")
-    implementation("dev.icerock.moko:mvvm-compose:0.16.1")
-    implementation("dev.icerock.moko:mvvm-flow:0.16.1")
-    implementation("dev.icerock.moko:mvvm-flow-compose:0.16.1")
+sqldelight {
+    database("ContactDatabase") {
+        packageName = "com.kbcoding.contactscomposemp.database"
+        sourceFolders = listOf("sqldelight")
+    }
 }
+
+//dependencies {
+//    implementation("androidx.core:core:1.10.1")
+//    implementation("dev.icerock.moko:mvvm-core:0.16.1")
+//    implementation("dev.icerock.moko:mvvm-compose:0.16.1")
+//    implementation("dev.icerock.moko:mvvm-flow:0.16.1")
+//    implementation("dev.icerock.moko:mvvm-flow-compose:0.16.1")
+//}
 
 //dependencies {
 //
