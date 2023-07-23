@@ -2,13 +2,10 @@ plugins {
     kotlin("multiplatform")
     id("com.android.library")
     id("org.jetbrains.compose")
-    id("com.squareup.sqldelight")
+    //id("com.squareup.sqldelight")
 }
 
-@OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
 kotlin {
-    //targetHierarchy.default()
-
     android {
         compilations.all {
             kotlinOptions {
@@ -17,11 +14,11 @@ kotlin {
         }
     }
 
-//    targets.withType(org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget::class.java).all {
-//        binaries.withType(org.jetbrains.kotlin.gradle.plugin.mpp.Framework::class.java).all {
-//            export("dev.icerock.moko:mvvm-core:0.16.1")
-//        }
-//    }
+    targets.withType(org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget::class.java).all {
+        binaries.withType(org.jetbrains.kotlin.gradle.plugin.mpp.Framework::class.java).all {
+            export("dev.icerock.moko:mvvm-core:0.16.1")
+        }
+    }
 
     listOf(
         iosX64(),
@@ -37,10 +34,10 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                //put your multiplatform dependencies here
                 implementation(compose.runtime)
                 implementation(compose.foundation)
-                implementation(compose.material)
+                implementation(compose.material3)
+                implementation(compose.materialIconsExtended)
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 implementation(compose.components.resources)
 
@@ -49,8 +46,8 @@ kotlin {
                 implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
                 implementation("dev.icerock.moko:mvvm-core:0.16.1")
                 implementation("dev.icerock.moko:mvvm-compose:0.16.1")
-                implementation("dev.icerock.moko:mvvm-flow:0.16.1")
-                implementation("dev.icerock.moko:mvvm-flow-compose:0.16.1")
+//                implementation("dev.icerock.moko:mvvm-flow:0.16.1")
+//                implementation("dev.icerock.moko:mvvm-flow-compose:0.16.1")
             }
         }
         val commonTest by getting {
@@ -63,7 +60,12 @@ kotlin {
                 implementation("com.squareup.sqldelight:android-driver:1.5.5")
                 implementation("androidx.appcompat:appcompat:1.6.1")
                 implementation("androidx.activity:activity-compose:1.7.2")
+                implementation("dev.icerock.moko:mvvm-core:0.16.1")
+//                implementation("dev.icerock.moko:mvvm-compose:0.16.1")
+//                implementation("dev.icerock.moko:mvvm-flow:0.16.1")
+//                implementation("dev.icerock.moko:mvvm-flow-compose:0.16.1")
             }
+            dependsOn(commonMain)
         }
         val androidUnitTest by getting
         val iosX64Main by getting
@@ -72,6 +74,11 @@ kotlin {
         val iosMain by creating {
             dependencies {
                 implementation("com.squareup.sqldelight:native-driver:1.5.5")
+                api("dev.icerock.moko:mvvm-core:0.16.1")
+//                api("dev.icerock.moko:mvvm-compose:0.16.1")
+//                api("dev.icerock.moko:mvvm-flow:0.16.1")
+//                api("dev.icerock.moko:mvvm-flow-compose:0.16.1")
+
             }
             dependsOn(commonMain)
             iosX64Main.dependsOn(this)
@@ -90,6 +97,10 @@ kotlin {
     }
 }
 
+//compose {
+//    kotlinCompilerPlugin.set("org.jetbrains.compose.compiler:compiler:1.4.5")
+//}
+
 android {
     namespace = "com.kbcoding.contactscomposemp"
     compileSdk = 33
@@ -102,6 +113,17 @@ android {
     }
 }
 
+//sqldelight {
+//    database("ContactDatabase") {
+//        packageName = "com.kbcoding.contactscomposemp.database"
+//        sourceFolders = listOf("sqldelight")
+//    }
+//}
+
 dependencies {
     implementation("androidx.core:core:1.10.1")
+    implementation("dev.icerock.moko:mvvm-core:0.16.1")
+    implementation("dev.icerock.moko:mvvm-compose:0.16.1")
+    implementation("dev.icerock.moko:mvvm-flow:0.16.1")
+    implementation("dev.icerock.moko:mvvm-flow-compose:0.16.1")
 }
