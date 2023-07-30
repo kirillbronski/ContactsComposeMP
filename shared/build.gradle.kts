@@ -14,10 +14,20 @@ kotlin {
         }
     }
 
+
+
+
 //    targets.withType(org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget::class.java).all {
 //        binaries.withType(org.jetbrains.kotlin.gradle.plugin.mpp.Framework::class.java).all {
 //            export("dev.icerock.moko:mvvm-core:0.16.1")
 //        }
+//    }
+//    targets.filterIsInstance<org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget>().forEach{
+//        it.binaries.filterIsInstance<org.jetbrains.kotlin.gradle.plugin.mpp.Framework>()
+//            .forEach { lib ->
+//                lib.isStatic = false
+//                lib.linkerOpts.add("-lsqlite3")
+//            }
 //    }
 
     listOf(
@@ -29,6 +39,9 @@ kotlin {
             baseName = "shared"
             isStatic = true
         }
+//        it.compilations.all {
+//            kotlinOptions.freeCompilerArgs += arrayOf("-linker-options", "-lsqlite3")
+//        }
     }
 
     sourceSets {
@@ -106,6 +119,7 @@ sqldelight {
         packageName = "com.kbcoding.contactscomposemp.database"
         sourceFolders = listOf("sqldelight")
     }
+    //linkSqlite = true
 }
 
 //dependencies {
