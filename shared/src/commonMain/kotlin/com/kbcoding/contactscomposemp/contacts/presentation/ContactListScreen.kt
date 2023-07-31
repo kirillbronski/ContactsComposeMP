@@ -22,14 +22,16 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.kbcoding.contactscomposemp.contacts.domain.model.Contact
 import com.kbcoding.contactscomposemp.contacts.presentation.components.ContactListItem
+import com.kbcoding.contactscomposemp.core.presentation.AddContactSheet
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ContactListScreen(
     state: ContactListState,
-    contact: Contact?,
-    onEvent: (ContactListEvent) -> Unit
+    newContact: Contact?,
+    onEvent: (ContactListEvent) -> Unit,
+
 ) {
        Scaffold(
         floatingActionButton = {
@@ -89,15 +91,15 @@ fun ContactListScreen(
 //        selectedContact = state.selectedContact,
 //        onEvent = onEvent,
 //    )
-//    AddContactSheet(
-//        state = state,
-//        newContact = newContact,
-//        isOpen = state.isAddContactSheetOpen,
-//        onEvent = { event ->
-//            if (event is ContactListEvent.OnAddPhotoClicked) {
-//                imagePicker.pickImage()
-//            }
-//            onEvent(event)
-//        },
-//    )
+    AddContactSheet(
+        state = state,
+        newContact = newContact,
+        isOpen = state.isAddContactSheetOpen,
+        onEvent = { event ->
+            if (event is ContactListEvent.OnAddPhotoClicked) {
+                //imagePicker.pickImage()
+            }
+            onEvent(event)
+        },
+    )
 }

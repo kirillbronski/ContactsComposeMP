@@ -36,7 +36,7 @@ fun App(
         ) {
             ContactListScreen(
                 state = state,
-                contact = viewModel.newContact,
+                newContact = viewModel.newContact,
                 onEvent = viewModel::onEvent
             )
         }
