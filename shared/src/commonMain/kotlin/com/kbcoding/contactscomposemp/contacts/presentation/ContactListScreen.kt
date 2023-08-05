@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import com.kbcoding.contactscomposemp.contacts.domain.model.Contact
 import com.kbcoding.contactscomposemp.contacts.presentation.components.ContactListItem
 import com.kbcoding.contactscomposemp.core.presentation.AddContactSheet
+import com.kbcoding.contactscomposemp.core.presentation.ImagePicker
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -31,9 +32,12 @@ fun ContactListScreen(
     state: ContactListState,
     newContact: Contact?,
     onEvent: (ContactListEvent) -> Unit,
-
+    imagePicker: ImagePicker
 ) {
-       Scaffold(
+    imagePicker.RegisterPicker { imageBytes ->
+        onEvent(ContactListEvent.OnPhotoPicked(imageBytes))
+    }
+    Scaffold(
         floatingActionButton = {
             FloatingActionButton(
                 onClick = {
@@ -97,7 +101,7 @@ fun ContactListScreen(
         isOpen = state.isAddContactSheetOpen,
         onEvent = { event ->
             if (event is ContactListEvent.OnAddPhotoClicked) {
-                //imagePicker.pickImage()
+                imagePicker.pickImage()
             }
             onEvent(event)
         },

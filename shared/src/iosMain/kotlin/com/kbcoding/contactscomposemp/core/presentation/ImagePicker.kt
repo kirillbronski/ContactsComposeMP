@@ -15,7 +15,6 @@ import platform.posix.memcpy
 actual class ImagePicker(
     private val rootController: UIViewController
 ) {
-
     private val imagePickerController = UIImagePickerController().apply {
         sourceType = UIImagePickerControllerSourceType.UIImagePickerControllerSourceTypePhotoLibrary
     }
