@@ -1,4 +1,4 @@
-package com.kbcoding.contactscomposemp.core.presentation
+package com.kbcoding.contactscomposemp.contacts.presentation.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -29,7 +29,7 @@ import androidx.compose.ui.unit.dp
 import com.kbcoding.contactscomposemp.contacts.domain.model.Contact
 import com.kbcoding.contactscomposemp.contacts.presentation.ContactListEvent
 import com.kbcoding.contactscomposemp.contacts.presentation.ContactListState
-import com.kbcoding.contactscomposemp.contacts.presentation.components.ContactPhoto
+import com.kbcoding.contactscomposemp.core.presentation.BottomSheetFromWish
 
 @Composable
 fun AddContactSheet(

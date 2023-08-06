@@ -2,7 +2,6 @@ package com.kbcoding.contactscomposemp
 
 import androidx.compose.ui.interop.LocalUIViewController
 import androidx.compose.ui.window.ComposeUIViewController
-import com.kbcoding.contactscomposemp.App
 import com.kbcoding.contactscomposemp.core.presentation.ImagePickerFactory
 import com.kbcoding.contactscomposemp.di.AppModule
 import platform.UIKit.UIScreen

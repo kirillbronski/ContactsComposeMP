@@ -21,9 +21,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.kbcoding.contactscomposemp.contacts.domain.model.Contact
+import com.kbcoding.contactscomposemp.contacts.presentation.components.AddContactSheet
+import com.kbcoding.contactscomposemp.contacts.presentation.components.ContactDetailSheet
 import com.kbcoding.contactscomposemp.contacts.presentation.components.ContactListItem
-import com.kbcoding.contactscomposemp.core.presentation.AddContactSheet
 import com.kbcoding.contactscomposemp.core.presentation.ImagePicker
+import com.plcoding.contactscomposemultiplatform.contacts.presentation.components.RecentlyAddedContacts
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -58,14 +60,13 @@ fun ContactListScreen(
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             item {
-//                RecentlyAddedContacts(
-//                    contacts = state.recentlyAddedContacts,
-//                    onClick = {
-//                        onEvent(ContactListEvent.SelectContact(it))
-//                    }
-//                )
+                RecentlyAddedContacts(
+                    contacts = state.recentlyAddedContacts,
+                    onClick = {
+                        onEvent(ContactListEvent.SelectContact(it))
+                    }
+                )
             }
-
             item {
                 Text(
                     text = "My contacts (${state.contacts.size})",
@@ -90,11 +91,11 @@ fun ContactListScreen(
         }
     }
 
-//    ContactDetailSheet(
-//        isOpen = state.isSelectedContactSheetOpen,
-//        selectedContact = state.selectedContact,
-//        onEvent = onEvent,
-//    )
+    ContactDetailSheet(
+        isOpen = state.isSelectedContactSheetOpen,
+        selectedContact = state.selectedContact,
+        onEvent = onEvent,
+    )
     AddContactSheet(
         state = state,
         newContact = newContact,
