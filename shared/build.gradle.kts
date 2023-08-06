@@ -14,19 +14,6 @@ kotlin {
         }
     }
 
-//    targets.withType(org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget::class.java).all {
-//        binaries.withType(org.jetbrains.kotlin.gradle.plugin.mpp.Framework::class.java).all {
-//            export("dev.icerock.moko:mvvm-core:0.16.1")
-//        }
-//    }
-//    targets.filterIsInstance<org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget>().forEach{
-//        it.binaries.filterIsInstance<org.jetbrains.kotlin.gradle.plugin.mpp.Framework>()
-//            .forEach { lib ->
-//                lib.isStatic = false
-//                lib.linkerOpts.add("-lsqlite3")
-//            }
-//    }
-
     listOf(
         iosX64(),
         iosArm64(),
@@ -56,8 +43,6 @@ kotlin {
                 implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
                 api("dev.icerock.moko:mvvm-core:0.16.1")
                 implementation("dev.icerock.moko:mvvm-compose:0.16.1")
-//                implementation("dev.icerock.moko:mvvm-flow:0.16.1")
-//                implementation("dev.icerock.moko:mvvm-flow-compose:0.16.1")
             }
         }
         val commonTest by getting {
@@ -116,21 +101,4 @@ sqldelight {
         packageName = "com.kbcoding.contactscomposemp.database"
         sourceFolders = listOf("sqldelight")
     }
-    //linkSqlite = true
 }
-
-//dependencies {
-//    implementation("androidx.core:core:1.10.1")
-//    implementation("dev.icerock.moko:mvvm-core:0.16.1")
-//    implementation("dev.icerock.moko:mvvm-compose:0.16.1")
-//    implementation("dev.icerock.moko:mvvm-flow:0.16.1")
-//    implementation("dev.icerock.moko:mvvm-flow-compose:0.16.1")
-//}
-
-//dependencies {
-//
-//    implementation("dev.icerock.moko:mvvm-core:0.16.1")
-//    implementation("dev.icerock.moko:mvvm-compose:0.16.1")
-//    implementation("dev.icerock.moko:mvvm-flow:0.16.1")
-//    implementation("dev.icerock.moko:mvvm-flow-compose:0.16.1")
-//}
